@@ -2,6 +2,7 @@ name: Build Android APK
 
 on:
   workflow_dispatch:
+
   push:
     branches:
       - main
@@ -11,18 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Build APK with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
         with:
           workdir: .
-          buildozer_version: master
-          command: android debug
+          buildozer_version: stable
+          command: buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Aviator-Analyzer-APK
-          path: bin/*.apk
+          path: ${{ steps.buildozer.outputs.filename }}
