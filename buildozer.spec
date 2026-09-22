@@ -1,4 +1,5 @@
 [app]
+android.accept_sdk_license = True
 
 title = Aviator Analyzer
 package.name = aviatoranalyzer
