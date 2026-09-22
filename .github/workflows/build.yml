@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
@@ -36,6 +35,7 @@ jobs:
             unzip \
             autoconf \
             libtool \
+            libltdl-dev \
             pkg-config \
             zlib1g-dev \
             libncurses5-dev \
@@ -54,6 +54,9 @@ jobs:
           python -m pip install buildozer
 
       - name: Build APK
+        env:
+          PYTHONFORANDROID_PREREQUISITES_INSTALL_INTERACTIVE: "0"
+          APP_ANDROID_ACCEPT_SDK_LICENSE: "1"
         run: |
           buildozer android debug
 
