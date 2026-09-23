@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    timeout-minutes: 360
 
     steps:
       - name: Setup Python
@@ -53,7 +54,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install buildozer
 
-      - name: Build APK
+      - name: Build PAK 
         env:
           PYTHONFORANDROID_PREREQUISITES_INSTALL_INTERACTIVE: "0"
           APP_ANDROID_ACCEPT_SDK_LICENSE: "1"
